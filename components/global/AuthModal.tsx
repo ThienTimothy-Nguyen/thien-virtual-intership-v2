@@ -12,10 +12,9 @@ import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import AuthSignUpModal from "./AuthSignUpModal";
 
-import type { loginMethod } from "@/types/auth";
+import type { LoginMethod } from "@/types/auth";
 
 function AuthModal() {
-    const [loginMethod,  setLoginMethod] = useState<loginMethod>("")
     const [needSignUp, setNeedSignUp] = useState(false)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -24,14 +23,16 @@ function AuthModal() {
     const isOpen = useAuthModalStore(state => state.isOpen) 
     const closeAuthModal = useAuthModalStore(state => state.closeAuthModal)
 
-    async function handleSubmit(): Promise<void | null> {
+    async function handleSubmit(loginMethod: LoginMethod): Promise<void | null> {
         if (loginMethod === "emailPassword") {
-            try { await signInWithEmailAndPassword(auth, email, password) }
+            try { 
+                await signInWithEmailAndPassword(auth, email, password);
+                closeAuthModal() 
+            }
             catch {
                 alert("Unable to find user. Please try again or sign up")
                 return null
             }
-            closeAuthModal()
         } else if (loginMethod === "guest") {
             await signInAnonymously(auth)
             closeAuthModal()
@@ -49,7 +50,10 @@ function AuthModal() {
                 return null;
             }
             
-            try {await createUserWithEmailAndPassword(auth, email, password)}
+            try {
+                await createUserWithEmailAndPassword(auth, email, password)
+                closeAuthModal()
+            }
             catch {
                 alert("Email already in use. Please input another email")
             }
@@ -66,14 +70,15 @@ function AuthModal() {
 
     if (!isOpen) return null
     return (
-        <div className="fixed inset-0 bg-transparent z-50">
+        <div className="fixed inset-0 bg-transparent z-100">
+
             <div className="w-full h-full bg-black/80"></div>
+
             {needSignUp ? 
             
             <AuthSignUpModal 
                 setEmail={setEmail}
                 setPassword={setPassword}
-                setLoginMethod={setLoginMethod}
                 setNeedSignUp={setNeedSignUp}
                 setConfirmPassword={setConfirmPassword}
                 handleSubmit={handleSubmit}
@@ -82,12 +87,13 @@ function AuthModal() {
             <form 
                 onSubmit={(e) => 
                     {
-                        e.preventDefault()
-                        handleSubmit()
+                        e.preventDefault();
+                        handleSubmit("emailPassword");
                     }}
                 className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-white shadow-2xl rounded-2xl 
                             flex flex-col gap-4 justify-center items-center w-100 h-130">
                 <button 
+                    type="button"
                     onClick={() => {
                         closeAuthModal()
                         setNeedSignUp(false)
@@ -97,21 +103,35 @@ function AuthModal() {
                 </button>
                 <h1 className="font-bold text-xl">Log in to Summarist</h1>
                 <button 
+                    type="button"
                     className="bg-[#405698] rounded-sm text-white h-9 w-75 relative"
-                    onClick={() => setLoginMethod("guest")}
+                    onClick={() => {
+                        handleSubmit("guest")
+                    }}
                 >
                     <FaRegUser className="absolute size-5 left-2 top-2" />
                     Login as a Guest
                 </button>
-                <div>or</div>
+                <div className="flex items-center justify-center gap-4">
+                    <div className="bg-gray-300 h-px w-28"></div>
+                    <h1>or</h1>
+                    <div className="bg-gray-300 h-px w-28"></div>
+                </div>
                 <button 
+                    type="button"
                     className="bg-[#5383EC] rounded-sm text-white h-9 w-75 relative"
-                    onClick={() => setLoginMethod("google")}
+                    onClick={() => {
+                        handleSubmit("google")
+                    }}
                 >
                     <img src="/assets/google.png" alt="google" className="absolute size-7 p-1 bg-white rounded-sm left-1 top-1" />
                     Login with Google
                 </button>
-                <div>or</div>
+                <div className="flex items-center justify-center gap-4">
+                    <div className="bg-gray-300 h-px w-28"></div>
+                    <h1>or</h1>
+                    <div className="bg-gray-300 h-px w-28"></div>
+                </div>
                 <input
                     onChange={(e) => setEmail(e.target.value)}
                     className="border border-gray-300 rounded-sm h-9 w-75 px-4" 
@@ -126,9 +146,13 @@ function AuthModal() {
                     autoComplete="current-password" />
                 <button 
                     className="btn home__cta--btn"
-                    onClick={() => setLoginMethod("emailPassword")}
-                >Log In</button>
-                <button type="button" className="text-blue-500 cursor-not-allowed">Forgot your password?</button>
+                    onClick={() => handleSubmit("emailPassword")}
+                >Login</button>
+                <button 
+                    type="button" 
+                    className="text-blue-500 cursor-not-allowed">
+                        Forgot your password?
+                </button>
                 <button 
                     type="button" 
                     className="text-blue-500 font-bold bg-gray-100 rounded-sm h-9 w-80"
@@ -138,6 +162,7 @@ function AuthModal() {
                 </button>
             </form>
             }
+
         </div>
     )
 }

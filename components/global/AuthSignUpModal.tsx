@@ -5,8 +5,7 @@ import type { AuthSignUpProps } from '@/types/auth';
 
 function AuthSignUpModal({ 
         setEmail, 
-        setPassword, 
-        setLoginMethod, 
+        setPassword,  
         setNeedSignUp,
         handleSubmit,
         setConfirmPassword
@@ -19,12 +18,12 @@ function AuthSignUpModal({
             onSubmit={(e) => 
                 {
                     e.preventDefault()
-                    setLoginMethod("signUp")
-                    handleSubmit()
+                    handleSubmit("signUp")
                 }}
             className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-white shadow-2xl rounded-2xl 
                         flex flex-col gap-8 justify-center items-center w-100 h-130">
             <button 
+                type='button'
                 onClick={() => {
                     closeAuthModal()
                     setNeedSignUp(false)
@@ -53,8 +52,8 @@ function AuthSignUpModal({
                 autoComplete='new-password'
             />
             <button 
+                onClick={() => handleSubmit("signUp")}
                 className="btn home__cta--btn"
-                onClick={() => setLoginMethod("signUp")}
             >
                 Sign Up
             </button>
@@ -63,7 +62,7 @@ function AuthSignUpModal({
                 className="text-blue-500 font-bold bg-gray-100 rounded-sm h-9 w-80"
                 onClick={() => setNeedSignUp(false)}
             >
-                Back to log in
+                Back to login
             </button>
         </form>
     )
