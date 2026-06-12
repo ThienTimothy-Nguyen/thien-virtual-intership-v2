@@ -29,6 +29,7 @@
     outline: none;
     border: none;
     background: transparent;
+    transition-duration: 200ms;
   }
 
   button:active {

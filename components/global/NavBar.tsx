@@ -10,16 +10,16 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebase';
 import { useNavStore } from "@/store/NavStore";
+import { useAuthModalStore } from "@/store/AuthModalStore";
 
 function NavBar() {
-
     const isNavOpen = useNavStore(state => state.isNavOpen);
     const closeNav = useNavStore(state => state.closeNav);
     const onRoute = useNavStore(state => state.onRoute)
 
-    function handleSignOut() {
-        signOut(auth)
-        alert("You have been signed out")
+    async function handleSignOut() {
+        await signOut(auth)
+        alert("You have been successfully signed out.")
     }
 
     return (
@@ -28,12 +28,14 @@ function NavBar() {
                             h-screen w-52 flex flex-col items-start justify-between bg-gray-100 z-50 }
                             ${isNavOpen && "translate-x-0 w-[60%]"}`}>
                 <div className="flex flex-col gap-13 w-full">
-                    <figure className="px-5 max-w-56">
+                    <Link 
+                        href={"/"}
+                        className="px-5 max-w-56">
                         <img 
                             src="/assets/logo.png" 
                             alt="logo" 
                             className="w-full"/>
-                    </figure>
+                    </Link>
                     <div className="flex flex-col text-lg w-full">
                         <Link href={"/for-you"}
                             className="p-4 relative pl-8 flex items-center gap-2 hover:bg-gray-200">
@@ -70,8 +72,7 @@ function NavBar() {
                     </span>
                     <button
                         className="p-4 relative pl-8 flex items-center gap-2 hover:bg-gray-200"
-                        onClick={() => handleSignOut()}
-                    >
+                        onClick={() => handleSignOut()}>
                         <IoLogOutOutline size={24}/>
                         Logout
                     </button>

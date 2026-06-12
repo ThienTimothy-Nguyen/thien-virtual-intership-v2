@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { IoSearch } from "react-icons/io5";
 import { LuMenu } from "react-icons/lu";
 import { useNavStore } from "@/store/NavStore";
