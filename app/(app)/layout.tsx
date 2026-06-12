@@ -1,6 +1,7 @@
 import NavBar from "@/components/global/NavBar";
 import RouteChangeWatcher from "@/components/global/RouteChangeWatcher";
 import SearchBar from "@/components/global/SearchBar";
+import WatchAuthChange from "@/components/global/AuthChangeWatcher";
 
 export default function AppLayout({
   children,
@@ -9,6 +10,7 @@ export default function AppLayout({
 }) {
   return (
     <div className="flex min-h-screen">
+        <WatchAuthChange />
         <RouteChangeWatcher/ >
         <NavBar />
         <main className="flex md:pl-52 w-full flex-col items-center ease-in-out duration-400">

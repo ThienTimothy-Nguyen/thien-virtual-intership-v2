@@ -22,7 +22,7 @@ export default function Home() {
         else return null
     });
 
-    return () => {unsubscribe()}
+    return () => unsubscribe()
   }, [router])
 
   return (
