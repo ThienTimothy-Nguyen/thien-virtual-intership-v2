@@ -10,7 +10,7 @@ type NavStore = {
 
 export const useNavStore = create<NavStore>((set) => ({
     onRoute: "/",
-    isNavOpen: true,
+    isNavOpen: false,
     openNav: () => set(() => ({isNavOpen: true})),
     closeNav: () => set(() => ({isNavOpen: false})),
     setOnRoute: (route) => set(() => ({onRoute: route}))

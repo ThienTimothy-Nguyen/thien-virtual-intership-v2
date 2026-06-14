@@ -1,28 +1,29 @@
+"use client"
 import BookDescription from "@/components/book/BookDescription";
 import BookInteractive from "@/components/book/BookInteractive";
+import { useBookApiStore } from "@/store/bookApiStore";
+import { useParams } from "next/navigation";
+import { useEffect } from "react";
 
-type ParamsProps = {
-  params: Promise<{bookId: string}>;
-};
+function Page() {
+    const { bookId } = useParams()
+    const fetchBookApi = useBookApiStore(state => state.fetchBookApi)
+    const book = useBookApiStore(state => state.book)
 
-async function Page({ params }: ParamsProps) {
-    const { bookId } = await params
+    useEffect(() => {
+        if (!bookId) return;
 
-    async function fetchBook() {
-        const res = await fetch(`https://us-central1-summaristt.cloudfunctions.net/getBook?id=${bookId}`)
-        if (!res.ok) {
-            throw new Error('Failed to fetch data')
-        }
-        return res.json()
-    }
+        fetchBookApi(`https://us-central1-summaristt.cloudfunctions.net/getBook?id=${bookId}`)
+        
+    }, [bookId, fetchBookApi]) 
 
-    const bookData = await fetchBook()
+    if (!book) return
 
     return (
         <div className="container">
             <div className="row flex flex-col gap-9">
-                <BookInteractive book={bookData} />
-                <BookDescription book={bookData} />
+                <BookInteractive book={book} />
+                <BookDescription book={book} />
             </div>
         </div>
     )

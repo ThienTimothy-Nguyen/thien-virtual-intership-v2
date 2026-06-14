@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "../styles/customize-progress-bar.css" ;
+
 import AuthModal from "@/components/global/AuthModal";
 
 const geistSans = Geist({
