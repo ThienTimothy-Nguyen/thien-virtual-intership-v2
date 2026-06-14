@@ -27,7 +27,7 @@ function BookInteractive({ book }: {book: Book}) {
             const { docs } = await getDocs(collection(db, "users", currentUser.uid, "savedBooks"));
             const booksData = docs.map((element) => ({...element.data(), id: element.id})) as Books;
 
-            booksData.map((item) => item.id).includes(book.id) ? 
+            booksData.map((item) => item?.id).includes(book?.id) ? 
                 setIsBookSaved(true) :
                 setIsBookSaved(false)
         }
@@ -102,7 +102,7 @@ function BookInteractive({ book }: {book: Book}) {
                     <div className="grid grid-cols-2 gap-x-16 gap-y-2 text-[16px] font-medium">
                         <div className="flex items-center gap-2">
                             <FaRegStar size={22} />
-                            <h3>{`${book.averageRating} (${book.totalRating} ratings)`}</h3> 
+                            <h3>{`${book.averageRating} (${book.totalRating})`}</h3> 
                         </div>
                         <div className="flex items-center gap-2">
                             <FiClock size={22} />

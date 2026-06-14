@@ -8,7 +8,7 @@ function SearchBar() {
     const openNav = useNavStore(state => state.openNav)
 
     return (
-        <div className="row relative py-5 flex justify-end items-center gap-4">
+        <div className="row border-b border-gray-300 relative py-5 flex justify-end items-center gap-4">
             <div className="flex w-82 overflow-hidden rounded-md border-2 border-gray-300 bg-gray-100">
                 <input
                     className="flex-1 py-1 pl-3 outline-none"

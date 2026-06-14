@@ -61,13 +61,6 @@ function AuthModal() {
         else return null
     }
 
-    useEffect(() => {
-        if(isOpen) document.body.style.overflow = "hidden"
-        else document.body.style.overflow = ""
-
-        return () => {document.body.style.overflow = ""}
-    }, [isOpen])
-
     if (!isOpen) return null
     return (
         <div className="fixed inset-0 bg-transparent z-100">
