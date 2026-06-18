@@ -1,16 +1,29 @@
 "use client"
 import { Book } from "@/types/bookApis";
-import { useEffect, useRef, useState } from "react";
+import { RefObject, SetStateAction, useEffect, useRef, useState, Dispatch } from "react";
 import { FaPause, FaPlay } from "react-icons/fa6";
 import { RiForward10Fill, RiReplay10Fill } from "react-icons/ri";
-import PlayerProgressBar from "./PlayerProgressBar";
 
+type PlayerControlProps = {
+    book: Book;
+    progressBarRef: RefObject<HTMLInputElement | null>;
+    audioRef: RefObject<HTMLAudioElement | null>
+    duration: number;
+    setTimeProgress: Dispatch<SetStateAction<number>>;
+    setDuration: Dispatch<SetStateAction<number>>;
+    handleProgressChange: (changeValue: number) => void;
+}
 
-function PlayerControl({ book }: {book: Book}) {
-    const [timeProgress, setTimeProgress] = useState<number>(0);
-    const [duration, setDuration] = useState<number>(0)
-    const audioRef = useRef<HTMLAudioElement>(null);
-    const progressBarRef = useRef<HTMLInputElement>(null);
+function PlayerControl({ 
+    book,
+    progressBarRef, 
+    audioRef,
+    duration,
+    setTimeProgress,
+    setDuration,
+    handleProgressChange,
+}: PlayerControlProps) {
+
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const playAnimationRef = useRef<number | null>(null);
 
@@ -77,52 +90,33 @@ function PlayerControl({ book }: {book: Book}) {
         }
     };
 
-    function handleProgressChange(changeValue: number): void {
-        if (audioRef?.current && progressBarRef?.current) {
-            const newTime = Number(progressBarRef.current.value) + changeValue;
-            audioRef.current.currentTime = newTime;
-            setTimeProgress(newTime)
-            progressBarRef.current.style.setProperty(
-                "--range-progress",
-                `${(newTime / duration) * 100}%`
-            )
-        }
-    }
-
 
     return (
-        <div className="flex flex-col gap-5">
-            <div className="flex gap-7 justify-center items-center">
-                <audio 
-                    src={book.audioLink} 
-                    ref={audioRef}
-                    onLoadedMetadata={onLoadedMetadata}>
-                </audio>
-                <button 
-                    className="text-white"
-                    onClick={() => handleProgressChange(-10)}>
-                    <RiReplay10Fill size={28} />
-                </button>
-                <button onClick={() => setIsPlaying(prev => !prev)}>
-                    {!isPlaying ? 
-                        <FaPlay 
-                            className="bg-white rounded-[50%] p-1.75 pr-1" 
-                            size={38} /> :
-                        <FaPause 
-                            className="bg-white rounded-[50%] p-1.75" 
-                            size={38} />}
-                </button>
-                <button 
-                    className="text-white"
-                    onClick={() => handleProgressChange(10)}>
-                    <RiForward10Fill size={28} />
-                </button>
-            </div>
-            <PlayerProgressBar 
-                progressBarRef={progressBarRef}
-                timeProgress={timeProgress}
-                duration={duration}
-                handleProgressChange={handleProgressChange}/>
+        <div className="flex gap-7 justify-center items-center">
+            <audio 
+                src={book.audioLink} 
+                ref={audioRef}
+                onLoadedMetadata={onLoadedMetadata}>
+            </audio>
+            <button 
+                className="text-white"
+                onClick={() => handleProgressChange(-10)}>
+                <RiReplay10Fill size={28} />
+            </button>
+            <button onClick={() => setIsPlaying(prev => !prev)}>
+                {!isPlaying ? 
+                    <FaPlay 
+                        className="bg-white rounded-[50%] p-1.75 pr-1" 
+                        size={38} /> :
+                    <FaPause 
+                        className="bg-white rounded-[50%] p-1.75" 
+                        size={38} />}
+            </button>
+            <button 
+                className="text-white"
+                onClick={() => handleProgressChange(10)}>
+                <RiForward10Fill size={28} />
+            </button>
         </div>
     )
 }

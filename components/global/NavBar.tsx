@@ -8,7 +8,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { IoLogOutOutline } from "react-icons/io5";
 import { signOut } from 'firebase/auth';
-import { auth } from '@/firebase';
+import { auth } from '@/lib/firebase';
 import { useNavStore } from "@/store/NavStore";
 import { useBookApiStore } from "@/store/bookApiStore";
 
@@ -28,7 +28,7 @@ function NavBar() {
             <div className={`-left-full md:left-0 py-5 fixed ease-in-out duration-400 
                             h-screen w-52 flex flex-col items-start gap-4 bg-gray-100 z-50 overflow-scroll
                             ${isNavOpen && "left-0 w-[60%]"} 
-                            ${showAudioPlayer && "max-h-[73%]"}`}>
+                            ${showAudioPlayer && "max-h-[73%] md:max-h-[85%]"}`}>
                 <Link 
                     href={"/"}
                     className="px-5 max-w-56">

@@ -25,8 +25,8 @@ function Page() {
     if (!book) return
 
     return (
-        <div className="container">
-            <div className="row flex flex-col justify-start pb-60">
+        <div className="global_container">
+            <div className="row flex flex-col justify-start pb-[60%] md:pb-[28%]">
                 <h1 className="border-b border-gray-300 font-bold text-2xl pb-4">
                     {book.title}
                 </h1>

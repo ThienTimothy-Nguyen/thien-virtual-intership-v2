@@ -4,6 +4,9 @@ import "./globals.css";
 import "../styles/customize-progress-bar.css" ;
 
 import AuthModal from "@/components/global/AuthModal";
+import AuthChangeWatcher from "@/components/global/AuthChangeWatcher";
+import RouteChangeWatcher from "@/components/global/RouteChangeWatcher";
+import ScrollLockWatcher from "@/components/global/ScrollLockWatcher";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +34,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <AuthChangeWatcher />
+        <RouteChangeWatcher />
+        <ScrollLockWatcher />
         {children}
         <AuthModal />
       </body>
