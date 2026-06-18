@@ -10,7 +10,7 @@ import { useAuthModalStore } from "@/store/AuthModalStore";
 import { useSubscriptionStore } from "@/store/SubscriptionStore";
 import { useRouter } from "next/navigation";
 import { doc, getDocs, setDoc, collection, deleteDoc } from "firebase/firestore";
-import { db } from "@/firebase";
+import { db } from "@/lib/firebase";
 import { useEffect, useState } from "react";
 
 function BookInteractive({ book }: {book: Book}) {
@@ -18,12 +18,16 @@ function BookInteractive({ book }: {book: Book}) {
     const isAuthLoading = useAuthModalStore(state => state.isAuthLoading);
     const currentUser = useAuthModalStore(state => state.currentUser);
     const isSubscribed = useSubscriptionStore(state => state.isSubscribed);
+    const setNeedAccountUpgrade = useSubscriptionStore(state => state.setNeedAccountUpgrade)
     const [isBookSaved, setIsBookSaved] = useState(false)
     const router = useRouter();
 
     useEffect(() => {
         async function checkSavedBooks() {
-            if (!currentUser) return
+            if (!currentUser || currentUser?.isAnonymous) {
+                setIsBookSaved(false)
+                return
+            }
             const { docs } = await getDocs(collection(db, "users", currentUser.uid, "savedBooks"));
             const booksData = docs.map((element) => ({...element.data(), id: element.id})) as Books;
 
@@ -38,13 +42,15 @@ function BookInteractive({ book }: {book: Book}) {
     function handleBookAccess() {
         if (!currentUser) {
             openAuthModal()
+            return
         }
-        else if (book.subscriptionRequired) {
+        if (book.subscriptionRequired) {
             if (!isSubscribed) {
                 router.push("/choose-plan")
+                return
             }
         }
-        else router.push(`/player/${book.id}`)
+        router.push(`/player/${book.id}`)
 
         return null
     }
@@ -53,7 +59,8 @@ function BookInteractive({ book }: {book: Book}) {
         if (!currentUser) {
             openAuthModal()
         } else if (currentUser.isAnonymous) {
-            alert("This feature isn't available for guest login. Please use another login method.")
+            openAuthModal()
+            setNeedAccountUpgrade(true)
         } else {
             const bookRef = doc(db, "users", currentUser.uid, "savedBooks", book.id)
             await setDoc(bookRef, {
@@ -83,7 +90,13 @@ function BookInteractive({ book }: {book: Book}) {
             openAuthModal()
         }
         else {
-            const bookRef = doc(db, "users", currentUser.uid, "savedBooks", book.id );
+            const userId = currentUser.uid
+            const bookRef = doc(
+                db, 
+                "users", 
+                userId, 
+                "savedBooks", 
+                book.id );
             await deleteDoc(bookRef)
             setIsBookSaved(false)
         }

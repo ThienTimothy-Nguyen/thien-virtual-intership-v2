@@ -1,6 +1,5 @@
 "use client";
-import type { Book } from "@/types/bookApis";
-import { RefObject, Dispatch,SetStateAction } from "react";
+import { RefObject } from "react";
 
 type PlayerProgressBarProps = {
     progressBarRef: RefObject<HTMLInputElement | null>;
@@ -31,10 +30,10 @@ function PlayerProgressBar({
     
 
     return (
-        <div className="flex justify-center items-center text-white gap-4">
+        <div className="flex justify-center items-center w-80 text-white gap-4">
             <h3>{formatTime(timeProgress)}</h3>
             <input 
-                className="max-w-[50%]"
+                className=""
                 ref={progressBarRef} 
                 defaultValue="0"
                 onChange={() => handleProgressChange(0)}

@@ -52,7 +52,6 @@ function AuthSignUpModal({
                 autoComplete='new-password'
             />
             <button 
-                onClick={() => handleSubmit("signUp")}
                 className="btn home__cta--btn"
             >
                 Sign Up

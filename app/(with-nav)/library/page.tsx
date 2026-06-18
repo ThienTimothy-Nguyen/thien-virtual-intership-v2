@@ -2,9 +2,9 @@ import React from 'react'
 
 function Page() {
   return (
-    <div className='container'>
+    <div className='global_container'>
       <div className='row'>
-        Settings
+        Library
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ function ActiveHeadings() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setListItem(prevItem => prevItem !== 5 ? prevItem + 1 : 0)
-    }, 2500)
+    }, 1500)
 
     return () => clearInterval(intervalId)
   }, [])

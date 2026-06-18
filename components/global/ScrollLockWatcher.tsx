@@ -4,7 +4,7 @@ import { useNavStore } from "@/store/NavStore";
 import { useAuthModalStore } from "@/store/AuthModalStore";
 
 function ScrollLockWatcher() {
-  const isOpen = useAuthModalStore(state => state.isOpen)
+    const isOpen = useAuthModalStore(state => state.isOpen)
     const isNavOpen = useNavStore(state => state.isNavOpen)
 
     useEffect(() => {

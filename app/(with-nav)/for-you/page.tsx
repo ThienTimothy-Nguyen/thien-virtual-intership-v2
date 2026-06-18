@@ -39,7 +39,7 @@ export default async function Page() {
 
 
     return (
-        <div className="container">
+        <div className="global_container">
             <div className="row flex flex-col gap-6">
                 <SelectedBook book={selectedBook[0]} />
                 <RecommendedForYou books={recommendedBooks} />
