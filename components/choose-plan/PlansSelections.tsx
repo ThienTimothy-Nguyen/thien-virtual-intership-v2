@@ -30,7 +30,7 @@ function PlansSelections() {
                 <div className="flex flex-col justify-between text-start gap-1 md:gap-2">
                     <h1 className="font-bold md:text-lg">Premium Plus Yearly</h1>
                     <h2 className="font-bold text-xl md:text-2xl">$99.99/year</h2>
-                    <h3 className="text-gray-500 text-sm">7-day free trial included</h3>
+                    <h3 className="text-gray-500 text-sm">Get your annual subscription for a lower price</h3>
                 </div>
             </button>
             <div className="flex items-center justify-center gap-4">
@@ -46,19 +46,14 @@ function PlansSelections() {
                 <div className="flex flex-col justify-between text-start gap-1 md:gap-2">
                     <h1 className="font-bold md:text-lg">Premium Monthly</h1>
                     <h2 className="font-bold text-xl md:text-2xl">$9.99/month</h2>
-                    <h3 className="text-gray-500 text-sm">No trial included</h3>
+                    <h3 className="text-gray-500 text-sm">Start your first month now</h3>
                 </div>
             </button>
-            <div className="flex flex-col justify-center items-center gap-3">
-                <button 
-                    className="w-74 p-2 bg-green-400 rounded-md"
-                    onClick={() => handlePaymentUrl()}>
-                    {chosenPlan === "yearly" ? "Start your free 7-day trial" : "Start your first month"}
-                </button>
-                <h3 className="text-gray-500 text-sm">
-                    {chosenPlan === "yearly" ? "Cancel your trial at any time before it ends, and you won't be charged." : "30-day money back guarantee, no questions asked."}
-                </h3>
-            </div>
+            <button 
+                className="w-74 p-2 bg-green-400 rounded-md hover:bg-green-500 transition-colors ease-in-out"
+                onClick={() => handlePaymentUrl()}>
+                Subscribe
+            </button>
         </div>
     )
 }
