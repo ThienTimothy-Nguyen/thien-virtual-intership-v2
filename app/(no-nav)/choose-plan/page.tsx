@@ -10,12 +10,17 @@ import { useEffect } from 'react';
 
 function Page() {
     const needAccountUpgrade = useSubscriptionStore(state => state.needAccountUpgrade);
+    const currentUser = useAuthModalStore(state => state.currentUser);
+    const isOpen = useAuthModalStore(state => state.isOpen);
+    const isAuthLoading = useAuthModalStore(state => state.isAuthLoading)
     const openAuthModal= useAuthModalStore(state => state.openAuthModal);
-    const isOpen = useAuthModalStore(state => state.isOpen)
 
     useEffect(() => {
-        if (needAccountUpgrade && !isOpen) openAuthModal()
-    }, [needAccountUpgrade, isOpen,openAuthModal])
+        if (isAuthLoading) return
+        if ((needAccountUpgrade || !currentUser) && !isOpen) {
+            openAuthModal()
+        }
+    }, [needAccountUpgrade, isOpen, openAuthModal, isAuthLoading,currentUser])
 
     return (
         <div>

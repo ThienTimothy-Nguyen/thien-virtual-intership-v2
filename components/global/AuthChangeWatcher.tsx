@@ -22,18 +22,20 @@ function AuthChangeWatcher() {
             setUser(user);
             setAuthLoading(false);
 
+            // If user is choosing plan but on guest account, they must upgrade to a permanent account.
             if (user?.isAnonymous && onRoute === "/choose-plan") {
                 setNeedAccountUpgrade(true)
                 return
             }
+            // If user is logged in and on homepage, redirect them to for-you page
             if (user && onRoute === "/") {
                 router.push("/for-you")
                 return
             }
+            // If user is logged in and is not on guest account, check if they subscribe.
             if (user && !user?.isAnonymous) {
                 const newSubscriptionStatus = await getPremiumStatus()
                 setIsSubscribed(newSubscriptionStatus)
-                console.log(newSubscriptionStatus)
                 setNeedAccountUpgrade(false);
                 return
             }
