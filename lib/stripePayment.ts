@@ -25,8 +25,6 @@ export const getCheckoutUrl = async (
         cancel_url: `${origin}/choose-plan`,
     };
 
-    console.log("checkoutSessionData:", checkoutSessionData);
-
     const docRef = await addDoc(checkoutSessionRef, checkoutSessionData);
 
     return new Promise<string>((resolve, reject) => {
