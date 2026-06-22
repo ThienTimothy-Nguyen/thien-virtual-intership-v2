@@ -1,7 +1,7 @@
 "use client"
 import { useBookApiStore } from "@/store/bookApiStore"
 import PlayerControl from "./PlayerControl";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import PlayerProgressBar from "./PlayerProgressBar";
 
 function AudioPlayer() {
@@ -45,12 +45,14 @@ function AudioPlayer() {
                 duration={duration}
                 setDuration={setDuration}
                 setTimeProgress={setTimeProgress}
-                handleProgressChange={handleProgressChange}/>
+                handleProgressChange={handleProgressChange}
+            />
             <PlayerProgressBar 
                 progressBarRef={progressBarRef}
                 timeProgress={timeProgress}
                 duration={duration}
-                handleProgressChange={handleProgressChange}/>
+                handleProgressChange={handleProgressChange}
+            />
         </div>
     )
 }

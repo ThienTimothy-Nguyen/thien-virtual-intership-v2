@@ -53,7 +53,8 @@ function BookControls({
             openAuthModal()
             setNeedAccountUpgrade(true)
         } else {
-            const bookRef = doc(db, "users", currentUser.uid, "savedBooks", book.id)
+            const bookRef = doc(db, "users", currentUser.uid, "savedBooks", book.id);
+
             await setDoc(bookRef, {
                 id: book.id,
                 author: book.author,
@@ -72,6 +73,7 @@ function BookControls({
                 bookDescription: book.bookDescription,
                 authorDescription: book.authorDescription,
             })
+
             setIsBookSaved(true)
         }
     }
