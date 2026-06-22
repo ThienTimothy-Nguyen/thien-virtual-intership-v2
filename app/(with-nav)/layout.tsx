@@ -1,6 +1,7 @@
 import NavBar from "@/components/global/NavBar";
-import SearchBar from "@/components/global/SearchBar";
+import SearchBar from "@/components/bookSearch/SearchBar";
 import AudioPlayer from "@/components/player/AudioPlayer";
+import SearchPanel from "@/components/bookSearch/SearchPanel";
 
 export default async function AppLayout({
   children
@@ -13,7 +14,10 @@ export default async function AppLayout({
         <main 
           className="flex md:pl-52 w-full flex-col items-center ease-in-out duration-400">
             <SearchBar />
-            {children}
+            <div className="relative w-full">
+              <SearchPanel />
+              {children}
+            </div>
         </main>
         <AudioPlayer />
     </div>

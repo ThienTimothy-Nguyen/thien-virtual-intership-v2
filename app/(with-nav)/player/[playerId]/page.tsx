@@ -1,5 +1,5 @@
 "use client";
-import { useBookApiStore } from "@/store/bookApiStore";
+import { useBookApiStore } from "@/store/BookApiStore";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 

@@ -1,5 +1,5 @@
 import type { Books } from "@/types/bookApis"
-import BookCard from "../global/BookCard"
+import BookCard from "../book/BookCard"
 
 function SuggestedBooks({ books }: {books: Books}) {
     return (
@@ -11,7 +11,7 @@ function SuggestedBooks({ books }: {books: Books}) {
                 Browse those books
             </h2>
             <div className="flex gap-8 overflow-x-scroll scrollbar-none">
-                {books ? books.map(book => (
+                {books.length > 0 ? books.map(book => (
                     <BookCard key={book.id} book={book} />
                 )): null}
             </div>

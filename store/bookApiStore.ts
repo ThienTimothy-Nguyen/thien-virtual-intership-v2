@@ -5,7 +5,7 @@ type BookApiProps = {
     showAudioPlayer: boolean;
     book: Book | null;
     isLoading: boolean;
-    error: string| null;
+    error: string | null;
     setShowAudioPlayer: (isShowed: boolean) => void
     fetchBookApi: (apiLink: string) => Promise<void>;
 }

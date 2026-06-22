@@ -17,6 +17,6 @@ export type Book = {
     authorDescription: string;
 }
 
-export type Books = Book[]
+export type Books = Book[] | []
 
 export type BookApis = Book[][]
