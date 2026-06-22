@@ -1,5 +1,5 @@
 "use client"
-import { useBookApiStore } from "@/store/BookApiStore"
+import { useBookApiStore } from "@/store/bookApiStore"
 import PlayerControl from "./PlayerControl";
 import { useEffect, useRef, useState } from "react";
 import PlayerProgressBar from "./PlayerProgressBar";

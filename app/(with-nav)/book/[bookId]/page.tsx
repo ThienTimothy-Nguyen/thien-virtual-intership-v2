@@ -1,7 +1,7 @@
 "use client"
 import BookDescription from "@/components/book/BookDescription";
 import BookDetails from "@/components/book/BookDetails";
-import { useBookApiStore } from "@/store/BookApiStore";
+import { useBookApiStore } from "@/store/bookApiStore";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 
