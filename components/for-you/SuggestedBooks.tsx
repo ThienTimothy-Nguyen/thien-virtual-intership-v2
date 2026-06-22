@@ -1,5 +1,6 @@
 import type { Books } from "@/types/bookApis"
 import BookCard from "../book/BookCard"
+import BookList from "../book/BookList"
 
 function SuggestedBooks({ books }: {books: Books}) {
     return (
@@ -10,11 +11,7 @@ function SuggestedBooks({ books }: {books: Books}) {
             <h2 className="text-gray-600">
                 Browse those books
             </h2>
-            <div className="flex gap-8 overflow-x-scroll scrollbar-none">
-                {books.length > 0 ? books.map(book => (
-                    <BookCard key={book.id} book={book} />
-                )): null}
-            </div>
+            <BookList books={books}/>
         </div>
     )
 }

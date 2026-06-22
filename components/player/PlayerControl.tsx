@@ -3,6 +3,7 @@ import { Book } from "@/types/bookApis";
 import { RefObject, SetStateAction, useEffect, useRef, useState, Dispatch } from "react";
 import { FaPause, FaPlay } from "react-icons/fa6";
 import { RiForward10Fill, RiReplay10Fill } from "react-icons/ri";
+import FinishedBookWatcher from "../watcher/FinishedBookWatcher";
 
 type PlayerControlProps = {
     book: Book;
@@ -117,6 +118,9 @@ function PlayerControl({
                 onClick={() => handleProgressChange(10)}>
                 <RiForward10Fill size={28} />
             </button>
+            <FinishedBookWatcher 
+                audioRef={audioRef} 
+                book={book} />
         </div>
     )
 }
