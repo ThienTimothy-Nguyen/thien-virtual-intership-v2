@@ -96,7 +96,7 @@ function PlayerControl({
             <audio 
                 src={book.audioLink} 
                 ref={audioRef}
-                onLoadedMetadata={onLoadedMetadata}>
+                onLoadedMetadata={() => onLoadedMetadata()}>
             </audio>
             <button 
                 className="text-white"

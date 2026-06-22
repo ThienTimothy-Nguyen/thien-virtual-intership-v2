@@ -28,7 +28,7 @@ function AudioPlayer() {
     }
 
     return (
-        <div className="fixed flex flex-col md:flex-row justify-around items-center bottom-0 left-0 p-4 bg-[#0B2A4A] w-screen z-100 h-[28%] md:h-[15%]">
+        <div className="fixed flex flex-col md:flex-row justify-around items-center bottom-0 left-0 p-4 bg-[#0B2A4A] w-screen z-80 h-[28%] md:h-[15%]">
             <div className="flex justify-center items-center gap-4">
                 <figure className="w-14">
                     <img className="w-full" src={book.imageLink} alt="bookImage" />

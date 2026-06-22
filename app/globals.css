@@ -30,7 +30,7 @@
     outline: none;
     border: none;
     background: transparent;
-    transition-duration: 200ms;
+    transition: all ease-in-out;
   }
 
   button:active {

@@ -4,9 +4,9 @@ import "./globals.css";
 import "../styles/customize-progress-bar.css" ;
 
 import AuthModal from "@/components/global/AuthModal";
-import AuthChangeWatcher from "@/components/global/AuthChangeWatcher";
-import RouteChangeWatcher from "@/components/global/RouteChangeWatcher";
-import ScrollLockWatcher from "@/components/global/ScrollLockWatcher";
+import AuthChangeWatcher from "@/components/watcher/AuthChangeWatcher";
+import RouteChangeWatcher from "@/components/watcher/RouteChangeWatcher";
+import ScrollLockWatcher from "@/components/watcher/ScrollLockWatcher";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -11,14 +11,20 @@ import { signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useNavStore } from "@/store/NavStore";
 import { useBookApiStore } from "@/store/bookApiStore";
+import { useAuthModalStore } from "@/store/AuthModalStore";
 
 function NavBar() {
     const isNavOpen = useNavStore(state => state.isNavOpen);
-    const closeNav = useNavStore(state => state.closeNav);
     const onRoute = useNavStore(state => state.onRoute);
-    const showAudioPlayer = useBookApiStore(state => state.showAudioPlayer)
+    const showAudioPlayer = useBookApiStore(state => state.showAudioPlayer);
+    const currentUser = useAuthModalStore(state => state.currentUser)
+    const closeNav = useNavStore(state => state.closeNav);
 
     async function handleSignOut() {
+        if (!currentUser) {
+            alert("You are already signed out")
+            return
+        }
         await signOut(auth)
         alert("You have been successfully signed out.")
     }
