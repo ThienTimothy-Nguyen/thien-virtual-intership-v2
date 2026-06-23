@@ -3,7 +3,7 @@ import { Book } from "@/types/bookApis";
 import { useEffect, useState } from "react";
 
 function SearchBookCard({ book }: {book: Book }) {
-  const [bookAudioDuration, setBookAudioDuration] = useState<string | null>(null);
+  const [bookAudioDuration, setBookAudioDuration] = useState<string>("--:--");
       
   useEffect(() => {
     if (!book.audioLink) return;
@@ -38,7 +38,7 @@ function SearchBookCard({ book }: {book: Book }) {
     <div
       className="flex items-center w-full justify-start text-start gap-6 p-3">
         <figure className="min-w-10 max-w-20">
-          <img 
+          <img loading="lazy" 
             className="w-full"
             src={book.imageLink} 
             alt="bookImg" />

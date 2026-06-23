@@ -15,7 +15,7 @@ function BookDetails({ book }: {book: Book}) {
     const formatRating = book.averageRating.toString().padEnd(3, ".0")
     const [isBookSaved, setIsBookSaved] = useState(false);
     const currentUser = useAuthModalStore(state => state.currentUser);
-    const [bookAudioDuration, setBookAudioDuration] = useState<string | null>(null);
+    const [bookAudioDuration, setBookAudioDuration] = useState<string>("--:--");
     
     useEffect(() => {
         if (!book.audioLink) return;
@@ -65,13 +65,13 @@ function BookDetails({ book }: {book: Book}) {
 
     return (
         <div className="flex flex-col items-start justify-between gap-7">
-            <figure className="w-full flex justify-center items-center">
-                <img className="w-74" src={book.imageLink} alt="bookImage" />
+            <figure className="w-full min-h-72 flex justify-center items-center">
+                <img loading="eager" className="w-74" src={book.imageLink} alt="bookImage" />
             </figure>
             <div className="flex flex-col gap-4">
                 <h1 className="text-3xl font-extrabold">{book.title} {book.subscriptionRequired && "(Premium)"}</h1>
                 <h3 className="text-lg font-bold">{book.author}</h3>
-                <h2 className="text-[22px]  text-gray-600">{book.subTitle}</h2>
+                <h2 className="text-[22px] text-gray-600">{book.subTitle}</h2>
                 <div className="w-full flex py-4 border-gray-200 border-b-2 border-t-2">
                     <div className="grid grid-cols-2 gap-x-16 gap-y-2 text-[16px] font-medium">
                         <div className="flex items-center gap-2">

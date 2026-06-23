@@ -38,7 +38,7 @@ function NavBar() {
                 <Link 
                     href={"/"}
                     className="px-5 max-w-56">
-                    <img 
+                    <img loading="lazy" 
                         src="/assets/logo.png" 
                         alt="logo" 
                         className="w-full"/>

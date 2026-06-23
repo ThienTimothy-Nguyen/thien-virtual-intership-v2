@@ -3,13 +3,19 @@
 import { useSearchStore } from "@/store/SearchStore";
 import SearchBookCard from "./SearchBookCard";
 import { useRouter } from "next/navigation";
+import SearchPanelLoading from "../skeletonLoading/SearchPanelLoading";
 
 
 function SearchPanel() {
     const bookList = useSearchStore(state => state.bookList);
+    const isSearchLoading = useSearchStore(state => state.isSearchLoading);
     const router = useRouter();
 
     if (bookList === null) return;
+
+    if(isSearchLoading) {
+        return <SearchPanelLoading />
+    }
 
     return (
         <div 

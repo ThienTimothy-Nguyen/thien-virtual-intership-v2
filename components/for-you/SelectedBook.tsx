@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { FaRegCirclePlay } from "react-icons/fa6";
 
 function SelectedBook ({book}: {book: Book}) {
-    const [bookAudioDuration, setBookAudioDuration] = useState<string>("");
+    const [bookAudioDuration, setBookAudioDuration] = useState<string>("--:--");
     const router = useRouter();
 
     useEffect(() => {
@@ -47,7 +47,7 @@ function SelectedBook ({book}: {book: Book}) {
                 <div className="bg-gray-300 w-px hidden lg:block"></div>
                 <div className="flex gap-4 items-center">
                     <figure className="max-w-32 flex-none">
-                        <img className="w-full" src={book.imageLink} alt="bookImage" />
+                        <img loading="eager" className="w-full" src={book.imageLink} alt="bookImage" />
                     </figure>
                     <div className="flex flex-col gap-3">
                         <h1 className="font-bold">{book.title}</h1>

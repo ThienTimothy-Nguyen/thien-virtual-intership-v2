@@ -66,6 +66,6 @@ export const useSearchStore = create<SearchStoreProps>((set, get) => ({
 
         timer = setTimeout(() => {
             get().fetchBooks(query)
-        }, 500);
+        }, 300);
     }
 }))

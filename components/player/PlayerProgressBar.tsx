@@ -25,20 +25,20 @@ function PlayerProgressBar({
             const formatSeconds= seconds.toString().padStart(2, '0');
             return `${formatMinutes}:${formatSeconds}`;
             }
-        return '00:00';
+        return '--:--';
     };
     
 
     return (
         <div className="flex justify-center items-center w-80 text-white gap-4">
-            <h3>{formatTime(timeProgress)}</h3>
+            <h3 className="whitespace-nowrap">{formatTime(timeProgress)}</h3>
             <input 
                 className=""
                 ref={progressBarRef} 
                 defaultValue="0"
                 onChange={() => handleProgressChange(0)}
                 type="range" />
-            <h3>{formatTime(duration)}</h3>
+            <h3 className="whitespace-nowrap">{formatTime(duration)}</h3>
         </div>
     )
 }

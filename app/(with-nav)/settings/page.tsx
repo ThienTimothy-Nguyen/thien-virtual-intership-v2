@@ -27,6 +27,7 @@ function Page() {
           <div className="flex flex-col justify-between items-center gap-3">
             <figure className="max-w-160">
               <img 
+                loading="lazy" 
                 className="w-full"
                 src="./assets/login.png" alt="login_img" />
             </figure>
