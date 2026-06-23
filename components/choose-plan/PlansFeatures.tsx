@@ -14,7 +14,7 @@ function PlansFeatures() {
                     Turn ordinary moments into amazing learning opportunities  
                 </h2>
                 <figure className="max-w-[50%] rounded-t-[280px] overflow-hidden">
-                    <img className="w-full" src="/assets/pricing-top.png" alt="planImage" />
+                    <img loading="lazy" className="w-full" src="/assets/pricing-top.png" alt="planImage" />
                 </figure>
             </div>
             <div className="flex flex-col gap-6 text-lg">

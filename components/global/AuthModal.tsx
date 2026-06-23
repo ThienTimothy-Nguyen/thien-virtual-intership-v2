@@ -137,7 +137,7 @@ function AuthModal() {
                             handleSubmit("google")
                         }}
                     >
-                        <img src="/assets/google.png" alt="google" className="absolute size-7 p-1 bg-white rounded-sm left-1 top-1" />
+                        <img loading="lazy" src="/assets/google.png" alt="google" className="absolute size-7 p-1 bg-white rounded-sm left-1 top-1" />
                         Login with Google
                     </button>
                     <div className="flex items-center justify-center gap-4">

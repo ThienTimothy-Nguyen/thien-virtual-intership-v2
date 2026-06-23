@@ -3,7 +3,7 @@ export const revalidate = 3600;
 import RecommendedForYou from "@/components/for-you/RecommendedForYou";
 import SelectedBook from "@/components/for-you/SelectedBook"
 import SuggestedBooks from "@/components/for-you/SuggestedBooks";
-import type { BookApis, Book } from "@/types/bookApis"
+import type { BookApis } from "@/types/bookApis"
 
 async function fetchSelectedBook() {
         const res = await fetch("https://us-central1-summaristt.cloudfunctions.net/getBooks?status=selected")
@@ -46,6 +46,5 @@ export default async function Page() {
                 <SuggestedBooks books={suggestedBooks} />
             </div>
         </div>
-
     )
 }

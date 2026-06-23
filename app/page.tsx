@@ -15,7 +15,7 @@ export default function Home() {
       <nav className="nav">
         <div className="nav__wrapper">
           <figure className="nav__img--mask">
-            <img className="nav__img" src="/assets/logo.png" alt="logo" />
+            <img loading="lazy" className="nav__img" src="/assets/logo.png" alt="logo" />
           </figure>
           <ul className="nav__list--wrapper">
             <li onClick={() => openAuthModal()} className="nav__list nav__list--login">Login</li>
@@ -44,7 +44,7 @@ export default function Home() {
                 <button onClick={() => openAuthModal()} className="btn home__cta--btn">Login</button>
               </div>
               <figure className="landing__image--mask">
-                <img src="/assets/landing.png" alt="landing" />
+                <img loading="lazy" src="/assets/landing.png" alt="landing" />
               </figure>
             </div>
           </div>
